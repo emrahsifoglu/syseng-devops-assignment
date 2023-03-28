@@ -9,6 +9,31 @@ services:
       - "5001:5001"
     networks:
       - flask-app
+  db:
+    user: "1000"
+    build:
+      context: ./docker/mysql
+    image: flask-db
+    ports:
+      - "3306:3306"
+    command: --default-authentication-plugin=mysql_native_password --init-file=/init.sql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    env_file:
+      - ./.env
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+      - ./docker/mysql/my-custom.cnf:/etc/mysql/conf.d/my-custom.cnf
+    networks:
+      - flask-app
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - flask-app
 networks:
   flask-app:
     driver: bridge

@@ -14,9 +14,9 @@ Run `make install` to install dependencies
 
 <br/>
 
-## How to run
+## How to serve
 
-Run `make serve` to serve (demo) Flash app on port 5001
+Run `make serve` to serve (demo) Flash app on http://localhost:5001/.
 
 <br/>
 
@@ -24,7 +24,21 @@ Run `make serve` to serve (demo) Flash app on port 5001
 
 Run `make requirements` to generate the requirements.txt
 
-Run `docker-compose up --build` to build and run the Flask app on port 5001
+Run `docker-compose build` to build images. 
+
+<br/>
+
+## How to run
+
+Run `docker-compose up -d` to run the app, MySQL and Adminer on the background.
+
+Now you can also access http://localhost:8080/ on your browser. 
+
+Userame is *root* and password is *password*.
+
+You can observe that database *syseng-devops-assignment* has been created.
+
+![Tables](/images/tables.png)
 
 <br/>
 
@@ -33,4 +47,5 @@ Run `docker-compose up --build` to build and run the Flask app on port 5001
 - https://pipenv-fork.readthedocs.io/en/latest/advanced.html
 - https://medium.com/geekculture/setting-up-python-environment-in-macos-using-pyenv-and-pipenv-116293da8e72
 - https://medium.com/analytics-vidhya/docker-docker-compose-flask-app-8527356aacd5
+- https://onexlab-io.medium.com/apple-m1-chip-no-matching-manifest-for-linux-arm64-v8-docker-mysql-5142060a9309
 - https://www.youtube.com/watch?v=bi0cKgmRuiA
