@@ -1,0 +1,11 @@
+# Environments
+.venv
+
+# mypy
+.mypy.ini
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# VisualStudioCode
+.vscode/*

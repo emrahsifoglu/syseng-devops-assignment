@@ -1,0 +1,26 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[packages]
+click="7.1.2"
+Flask="1.1.2"
+Flask-Cors="3.0.9"
+itsdangerous="1.1.0"
+Jinja2="2.11.2"
+MarkupSafe="1.1.1"
+Werkzeug="1.0.1"
+python-dotenv = "*"
+
+[dev-packages]
+pytest = "*"
+pytest-cov = "*"
+pytest-mock = "*"
+pylint = "*"
+pylint-quotes = "*"
+mock = "*"
+mypy = "*"
+
+[requires]
+python_version="3.11"
