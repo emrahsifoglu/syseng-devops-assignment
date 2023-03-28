@@ -14,6 +14,10 @@ activate: 	## Activate the Pipenv shell
 serve: 	## Serving Flask app
 	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run python app.py
 
+.PHONY: requirements
+requirements: ## Generate a requirements.txt
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv requirements > requirements.txt
+
 .PHONY: remove
 remove: ## Remove virtual environment
 	PIPENV_IGNORE_VIRTUALENVS=1 pipenv --rm

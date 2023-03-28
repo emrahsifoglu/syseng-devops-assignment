@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: flask-app
+    ports:
+      - "5001:5001"
+    networks:
+      - flask-app
+networks:
+  flask-app:
+    driver: bridge
