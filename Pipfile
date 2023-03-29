@@ -12,6 +12,7 @@ Jinja2="2.11.2"
 MarkupSafe="1.1.1"
 Werkzeug="1.0.1"
 python-dotenv = "*"
+flask-mysql = "*"
 
 [dev-packages]
 pytest = "*"

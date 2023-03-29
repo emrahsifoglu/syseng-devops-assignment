@@ -14,9 +14,9 @@ Run `make install` to install dependencies
 
 <br/>
 
-## How to serve
+## How to run (dev)
 
-Run `make serve` to serve (demo) Flash app on http://localhost:5001/.
+Run `make dev` to serve (demo) Flash app on http://localhost:5001/.
 
 <br/>
 

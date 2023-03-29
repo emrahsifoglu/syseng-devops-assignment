@@ -5,6 +5,13 @@ services:
       context: .
       dockerfile: Dockerfile
     image: flask-app
+    working_dir: /var/www/
+    environment:
+      MYSQL_DATABASE_HOST: db
+    env_file:
+      - ./.env
+    depends_on:
+      - db
     ports:
       - "5001:5001"
     networks:
@@ -27,7 +34,7 @@ services:
       - ./docker/mysql/my-custom.cnf:/etc/mysql/conf.d/my-custom.cnf
     networks:
       - flask-app
-  adminer:
+  adminer: 
     image: adminer
     restart: always
     ports:

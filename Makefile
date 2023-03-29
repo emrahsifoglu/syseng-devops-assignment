@@ -10,9 +10,9 @@ install: 	## install the dependencies
 activate: 	## Activate the Pipenv shell
 	PIPENV_IGNORE_VIRTUALENVS=1 pipenv shell
 
-.PHONY: serve
-serve: 	## Serving Flask app
-	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run python app.py
+.PHONY: dev
+dev: 	## Serving Flask app
+	PIPENV_IGNORE_VIRTUALENVS=1 pipenv run flask --app src/main run -h 0.0.0.0 -p 5001
 
 .PHONY: requirements
 requirements: ## Generate a requirements.txt
