@@ -1,15 +1,14 @@
+import visitor
 from app import app
-from flask import jsonify
-
-import pymysql
-from db import mysql
+from flask import jsonify	
+	
+@app.before_request
+def track_visitor():
+    visitor.track_visitor()
 
 @app.route('/')
 def home():
-    conn = mysql.connect()
-    conn.close()
-
-    return jsonify({'msg' : conn.charset})
+    return jsonify({'msg' : 'hello'})
 
 @app.route("/health")
 def health():

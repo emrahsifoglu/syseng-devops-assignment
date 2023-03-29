@@ -48,4 +48,5 @@ You can observe that database *syseng-devops-assignment* has been created.
 - https://medium.com/geekculture/setting-up-python-environment-in-macos-using-pyenv-and-pipenv-116293da8e72
 - https://medium.com/analytics-vidhya/docker-docker-compose-flask-app-8527356aacd5
 - https://onexlab-io.medium.com/apple-m1-chip-no-matching-manifest-for-linux-arm64-v8-docker-mysql-5142060a9309
+- https://roytuts.com/python-flask-online-visitor-tracking-system/
 - https://www.youtube.com/watch?v=bi0cKgmRuiA
