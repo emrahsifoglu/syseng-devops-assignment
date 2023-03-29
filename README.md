@@ -50,3 +50,5 @@ You can observe that database *syseng-devops-assignment* has been created.
 - https://onexlab-io.medium.com/apple-m1-chip-no-matching-manifest-for-linux-arm64-v8-docker-mysql-5142060a9309
 - https://roytuts.com/python-flask-online-visitor-tracking-system/
 - https://www.youtube.com/watch?v=bi0cKgmRuiA
+- https://www.youtube.com/watch?v=SdTzwYmsgoU
+- https://www.tutorialspoint.com/python-program-to-get-first-and-last-elements-from-a-tuple

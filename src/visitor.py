@@ -91,3 +91,14 @@ def log_visitor(ip_address, requested_url, referer_page, page_name, query_string
     finally:
         cursor.close()
         conn.close()
+
+def get_sum_of_visits():
+    sql = "SELECT SUM(`no_of_visits`) as sum_of_visits FROM `visits_log`"
+
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    cursor.execute(sql)
+
+    sum_of_visits = cursor.fetchone()
+
+    return sum_of_visits[0]

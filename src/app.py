@@ -20,7 +20,7 @@ CORS(app)
 
 app.config["CORS_HEADERS"] = "Content-Type"
 app.config['JSON_SORT_KEYS'] = False
-app.config['PERMANENT_SESSION_LIFETIME'] =  timedelta(milliseconds=5000) # Evert 5 seconds
+app.config['PERMANENT_SESSION_LIFETIME'] =  timedelta(milliseconds=1000)
 
 # MySQL configurations
 app.config['MYSQL_DATABASE_USER'] = MYSQL_DATABASE_USER
