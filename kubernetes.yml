@@ -1,0 +1,65 @@
+---
+- hosts: localhost
+  gather_facts: false
+  connection: local
+  tasks:
+  - name: "Install kubernetes python package"
+    pip:
+      name: kubernetes
+      state: present
+  - name: "Check if default namespace exists"
+    k8s:
+      name: default
+      api_version: v1
+      kind: Namespace
+      state: present
+  - name: "Apply PVC for MySQL"
+    k8s:
+      state: present
+      namespace: default
+      src: ./manifests/mysql-pv.yml
+  - name: "Apply ConfigMap for MySQL"
+    k8s:
+      state: present
+      namespace: default
+      src: ./manifests/mysql-cm.yml
+  - name: "Apply Secrets for MySQL"
+    k8s:
+      state: present
+      namespace: default
+      src: ./manifests/mysql-secrets.yml
+  - name: "Deploy MySQL"
+    k8s:
+      state: present
+      namespace: default
+      src: ./manifests/mysql-deployment.yml
+  - name: "Create service for MySQL"
+    k8s:
+      state: present
+      namespace: default
+      src: ./manifests/mysql-svc.yml
+  - name: "Deploy Adminer"
+    k8s:
+      state: present
+      namespace: default
+      src: ./manifests/adminer-deployment.yml
+  - name: "Create service for Adminer"
+    k8s:
+      state: present
+      namespace: default
+      src: ./manifests/adminer-svc.yml
+  - name: "Apply secrets for the app"
+    k8s:
+      state: present
+      namespace: default
+      src: ./manifests/app-secrets.yml
+  - name: "Deploy the app"
+    k8s:
+      state: present
+      namespace: default
+      src: ./manifests/app-deployment.yml
+  - name: "Create service for the app"
+    k8s:
+      state: present
+      namespace: default
+      src: ./manifests/app-svc.yml
