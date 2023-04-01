@@ -3,6 +3,10 @@
   gather_facts: false
   connection: local
   tasks:
+  - name: "Install jmespath python package"
+    pip:
+      name: jmespath
+      state: present
   - name: "Install kubernetes python package"
     pip:
       name: kubernetes
@@ -13,53 +17,53 @@
       api_version: v1
       kind: Namespace
       state: present
-  - name: "Apply PVC for MySQL"
+  - name: "Deploy a MySQL database server"
     k8s:
-      state: present
+      definition: "{{ lookup('template', '{{ item }}') | from_yaml }}"
       namespace: default
-      src: ./manifests/mysql-pv.yml
-  - name: "Apply ConfigMap for MySQL"
-    k8s:
       state: present
-      namespace: default
-      src: ./manifests/mysql-cm.yml
-  - name: "Apply Secrets for MySQL"
-    k8s:
-      state: present
-      namespace: default
-      src: ./manifests/mysql-secrets.yml
-  - name: "Deploy MySQL"
-    k8s:
-      state: present
-      namespace: default
-      src: ./manifests/mysql-deployment.yml
-  - name: "Create service for MySQL"
-    k8s:
-      state: present
-      namespace: default
-      src: ./manifests/mysql-svc.yml
+    with_fileglob:
+      - "./manifests/mysql/mysql-pv.yml"
+      - "./manifests/mysql/mysql-pvc.yml"
+      - "./manifests/mysql/mysql-config.yml"
+      - "./manifests/mysql/mysql-initdb-config.yml"
+      - "./manifests/mysql/mysql-secrets.yml"
+      - "./manifests/mysql/mysql-deployment.yml"
+      - "./manifests/mysql/mysql-svc.yml"
   - name: "Deploy Adminer"
     k8s:
-      state: present
+      definition: "{{ lookup('template', '{{ item }}') | from_yaml }}"
       namespace: default
-      src: ./manifests/adminer-deployment.yml
-  - name: "Create service for Adminer"
+      state: present
+    with_fileglob:
+      - "./manifests/adminer/adminer-deployment.yml"
+      - "./manifests/adminer/adminer-svc.yml"
+  - name: Get Adminer service
     k8s:
-      state: present
+      api_version: v1
+      kind: Service
+      name: adminer-svc
       namespace: default
-      src: ./manifests/adminer-svc.yml
-  - name: "Apply secrets for the app"
+    register: adminer_svc
+  - name: Adminer
+    debug:
+      msg: "http://{{ adminer_svc | json_query('result.status.loadBalancer.ingress[0].ip')}}:{{ adminer_svc | json_query('result.spec.ports[0].port')}}"
+  - name: "Deploy Flask application"
     k8s:
-      state: present
+      definition: "{{ lookup('template', '{{ item }}') | from_yaml }}"
       namespace: default
-      src: ./manifests/app-secrets.yml
-  - name: "Deploy the app"
+      state: present
+    with_fileglob:
+      - "./manifests/app/app-secrets.yml"
+      - "./manifests/app/app-deployment.yml"
+      - "./manifests/app/app-svc.yml"
+  - name: Get application service
     k8s:
-      state: present
+      api_version: v1
+      kind: Service
+      name: flask-app-svc
       namespace: default
-      src: ./manifests/app-deployment.yml
-  - name: "Create service for the app"
-    k8s:
-      state: present
-      namespace: default
-      src: ./manifests/app-svc.yml
+    register: flask_app_svc
+  - name: Flask application
+    debug:
+      msg: "http://{{ flask_app_svc | json_query('result.status.loadBalancer.ingress[0].ip')}}:{{ flask_app_svc | json_query('result.spec.ports[0].port')}}"

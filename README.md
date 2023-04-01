@@ -46,6 +46,10 @@ You can observe that database *syseng-devops-assignment* has been created.
 
 Run `ansible-playbook kubernetes.yml` to deploy MySQL along with Adminer and the applicaiton.
 
+<br/>
+
+![Tables](/images/output.png)
+
 ### Resources
 - https://pipenv-fork.readthedocs.io/en/latest/basics.html
 - https://pipenv-fork.readthedocs.io/en/latest/advanced.html
