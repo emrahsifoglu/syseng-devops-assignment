@@ -1,0 +1,17 @@
+/src/__pycache__
+
+# Environments
+.env
+.venv
+
+# mypy
+.mypy.ini
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# VisualStudioCode
+.vscode/*
+
+# Volumes
+mysql-data
